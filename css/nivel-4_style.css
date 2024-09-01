@@ -1,0 +1,6 @@
+.hardware-table {
+    width: 100%;
+    margin-top: 20px;
+    background-color:antiquewhite;
+    border-spacing: 10px; /* Para separa los elementos de la tabla */
+}
