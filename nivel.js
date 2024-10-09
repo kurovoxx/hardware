@@ -1,12 +1,15 @@
-const form = document.getElementById("combobox"); // combobox
-const btn = document.getElementById("enviar");  // botón para enviar selección
+const form = document.getElementById("combobox");
+const btn = document.getElementById("enviar"); 
 
 btn.onclick = function(event) {
     event.preventDefault();
     const selectedValue = form.value;
+    
+    alert("Has seleccionado la opcion: " + selectedValue);
+    
     console.log("Valor seleccionado:", selectedValue);
     
-    switch(selectedValue) { // redireccionar página dependiendo se selección
+    switch(selectedValue) {
         case 'a':
             window.location.href = "nivel_1.html";
             break;
@@ -20,7 +23,7 @@ btn.onclick = function(event) {
             window.location.href = "nivel_4.html";
             break;
         default:
-            console.log("Selección no válida");
+            console.log("Selección no valida");
             break;
     }
 };
