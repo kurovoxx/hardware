@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="./css/menu_styles.css">
+    <!-- React y ReactDOM desde CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel para compilar JSX en el navegador -->
+    <script src="https://unpkg.com/@babel/standalone"></script>
 </head>
 <body>
     <!-- Header en una sola columna -->
@@ -67,6 +72,9 @@
         <div class="text-center mt-5">
             <button id="modalButton" class="btn btn-warning">Información adicional</button>
         </div>
+
+        <!-- Aquí renderizamos nuestro componente de React -->
+        <div id="react-root"></div>
     </main>
 
     <!-- Bootstrap JS -->
@@ -77,5 +85,21 @@
     <script src="mostrar_mensaje.js"></script>
     <script src="niveles_js.js"></script>
     <script src="modal_info.js"></script> <!-- Enlace al nuevo script -->
+
+    <!-- Script para React -->
+    <script type="text/babel">
+        // Componente React
+        function Informacion() {
+            return (
+                <div className="alert alert-info text-center mt-4">
+                    <h4>¡Bienvenido a la sección de Hardware!</h4>
+                    <p>Encuentra toda la información sobre hardware en nuestro sitio web.</p>
+                </div>
+            );
+        }
+
+        // Renderizamos el componente React en el div con id 'react-root'
+        ReactDOM.render(<Informacion />, document.getElementById('react-root'));
+    </script>
 </body>
 </html>
