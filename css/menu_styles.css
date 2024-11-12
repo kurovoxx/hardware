@@ -1,0 +1,81 @@
+/* Estilos generales de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4a90e2;
+    color: white;
+}
+
+main {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilos para el botón "Vamos!" */
+#enviar {
+    background-color: #4a90e2;
+    color: white;
+}
+
+#enviar:hover {
+    background-color: #357ABD;
+}
+
+/* Estilos para el botón de seleccionar hardware */
+.hardware-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.hardware-btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Estilos para el botón de ver selección */
+.selection-btn {
+    background-color: #f39c12;
+    color: white;
+}
+
+.selection-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Estilos para el botón de volver al login */
+.login-btn {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos adicionales para secciones */
+.hardware-section, .hardware-selection, .login-section {
+    margin-top: 20px;
+}

@@ -1,13 +1,14 @@
 <?php
-$host = "mysql.inf.uct.cl";
-$user = "brojas";
-$pass = "pRNk2zu4-Gu5Q+ZEf";
-$db  = "A2024_brojas";
+   $servidor = "mysql.inf.uct.cl";
+   $user     = "miguel_fernandez";
+   $password = "cHEYMQNcNi68Ml8nX";
+   $basedato = "A2021_miguel_fernandez";
+   
+   
+$db = mysqli_connect($servidor, $user, $password, $basedato);
 
-$link = mysqli_connect($host, $user, $pass, $db);
-
-// Verificar si hay errores en la conexión
-if (!$link) {
-    die("Conexión fallida: " . mysqli_connect_error());
-}
+   if(!$db) {
+         echo "Error de conexión a la BD";
+         exit();
+   }
 ?>

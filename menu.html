@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <link rel="stylesheet" href="./css/menu_styles.css">
+</head>
+<body>
+    <header>
+        <h1>Seleccione su nivel de familiaridad</h1>
+        <h1>con el <b>Hardware</b></h1>
+    </header>
+    <main>
+        <!-- Aqu� se mostrar� el mensaje de �xito o error -->
+        <div id="mensaje" class="mensaje"></div>
+
+        <form>
+            <label for="combobox">Elige una opcion:</label><br>
+            <select id="combobox" name="nivel">
+                <option value="a">¿Que es el Hardware?</option>
+                <option value="b">Conozco el concepto</option>
+                <option value="c">Estoy familiarizado con el concepto</option>
+                <option value="d">Estoy bastante informado al respecto</option>
+            </select><br>
+            <button id="enviar">Vamos!</button>
+            <script src="niveles_js.js"></script>
+        </form>
+
+        <!-- Bot�n para ir a la p�gina de selecci�n de hardware -->
+        <div class="hardware-section">
+            <h2>¿Listo para seleccionar el hardware?</h2>
+            <button onclick="window.location.href='hardware.php'" class="hardware-btn">Seleccionar Hardware</button>
+        </div>
+
+        <!-- Bot�n para ver la selecci�n de hardware -->
+        <div class="hardware-selection">
+            <h2>¿Ver tu seleccion de hardware?</h2>
+            <button onclick="window.location.href='seleccion.php'" class="selection-btn">Ver Seleccion</button>
+        </div>
+
+        <!-- Nuevo: Bot�n para volver al index -->
+        <div class="login-section">
+            <h2>¿Volver a la pagina principal?</h2>
+            <button onclick="window.location.href='index.html'" class="login-btn">Volver al Inicio</button>
+        </div>
+
+    </main>
+
+    <!-- Script para mostrar mensajes -->
+    <script>
+        // Funci�n para obtener par�metros de la URL
+        function obtenerParametroUrl(parametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parametro);
+        }
+
+        // Mostrar el mensaje basado en el estado
+        const status = obtenerParametroUrl('status');
+        const mensajeDiv = document.getElementById('mensaje');
+
+        if (status === 'success') {
+            mensajeDiv.textContent = 'Seleccion guardada exitosamente.';
+            mensajeDiv.style.color = 'green';
+        } else if (status === 'error') {
+            mensajeDiv.textContent = 'Hubo un error al guardar la seleccion.';
+            mensajeDiv.style.color = 'red';
+        }
+    </script>
+
+</body>
+</html>
