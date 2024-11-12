@@ -76,23 +76,6 @@
     <!-- Enlace a los scripts externos -->
     <script src="mostrar_mensaje.js"></script>
     <script src="niveles_js.js"></script>
-
-    <!-- Script para el modal con SweetAlert2 -->
-    <script>
-        document.getElementById("modalButton").addEventListener("click", function() {
-            Swal.fire({
-                title: 'Bienvenido!',
-                text: 'Aquí encontrarás información útil sobre el hardware y cómo seleccionar el adecuado.',
-                icon: 'info',
-                confirmButtonText: '¡Entendido!',
-                background: '#f9f9f9',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    title: 'my-swal-title',
-                    confirmButton: 'my-swal-button'
-                }
-            });
-        });
-    </script>
+    <script src="modal_info.js"></script> <!-- Enlace al nuevo script -->
 </body>
 </html>
