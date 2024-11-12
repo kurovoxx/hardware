@@ -1,8 +1,8 @@
 <?php
-// Incluir el archivo que contiene la conexiÛn a la base de datos
+// Incluir el archivo que contiene la conexi√≥n a la base de datos
 include("Conex.inc");
 
-$mensajeInsercion = "";  // Variable para almacenar el mensaje de Èxito o error
+$mensajeInsercion = "";  // Variable para almacenar el mensaje de √©xito o error
 
 // Verificamos que el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,28 +10,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger los datos enviados por el formulario
     $nombre = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];  // ContraseÒa en texto plano
+    $password = $_POST['password'];  // Contrase√±a en texto plano
+
+    // Encriptar la contrase√±a usando MD5
+    $password_hash = md5($password);
 
     try {
         // Preparamos la consulta SQL para insertar los datos en la tabla 'usuario'
-        // Aunque la columna se llama password_hash, almacenaremos la contraseÒa sin hash
+        // Almacenamos la contrase√±a encriptada con MD5 en la columna 'password_hash'
         $consulta = "INSERT INTO usuario (nombre, email, password_hash) VALUES (?, ?, ?)";
 
-        // Preparamos la consulta con el objeto de conexiÛn
+        // Preparamos la consulta con el objeto de conexi√≥n
         $stmt = $db->prepare($consulta);
 
-        // Ejecutamos la consulta con los valores proporcionados (almacenamos la contraseÒa en texto plano)
-        if ($stmt->execute([$nombre, $email, $password])) {
-            // Si la inserciÛn es exitosa, redirigimos al men˙
+        // Ejecutamos la consulta con los valores proporcionados (almacenamos la contrase√±a encriptada)
+        if ($stmt->execute([$nombre, $email, $password_hash])) {
+            // Si la inserci√≥n es exitosa, redirigimos al men√∫
             header("Location: menu.html");
             exit();
         } else {
-            // Si ocurre un error, lanzamos una excepciÛn
+            // Si ocurre un error, lanzamos una excepci√≥n
             throw new Exception("Error al registrar el usuario.");
         }
 
     } catch (Exception $e) {
-        // Mostrar el mensaje de error si ocurre alg˙n problema
+        // Mostrar el mensaje de error si ocurre alg√∫n problema
         echo "<h2>Error: " . $e->getMessage() . "</h2>";
     }
 }

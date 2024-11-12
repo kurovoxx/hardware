@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('error-message');
 
-    // Leer los parámetros de la URL
+    // Leer los parï¿½metros de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
-    console.log("Parámetro 'error' en la URL:", error);
+    console.log("Parametro 'error' en la URL:", error);
 
     // Si hay un mensaje de error en la URL, mostrarlo
     if (error) {
-        console.log("Se detectó un error en la URL.");
+        console.log("Se detecto un error en la URL.");
         mostrarError(decodeURIComponent(error));
     }
 
-    // Evento de envío del formulario
+    // Evento de envï¿½o del formulario
     loginForm.addEventListener('submit', function(event) {
         console.log("Evento 'submit' del formulario activado.");
         event.preventDefault();
@@ -25,19 +25,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log("Valores ingresados - Email:", email, "Password:", password);
 
-        // Validación básica de campos
+        // Validaciï¿½n bï¿½sica de campos
         if (!email || !password) {
-            console.log("Validación fallida. Campos vacíos detectados.");
+            console.log("Validacion fallida. Campos vacios detectados.");
             mostrarError("Por favor, complete todos los campos.");
             return;
         }
 
-        console.log("Validación exitosa. Enviando formulario...");
+        console.log("Validacion exitosa. Enviando formulario...");
         // Enviar el formulario
         this.submit();
     });
 
-    // Función para mostrar errores
+    // Funciï¿½n para mostrar errores
     function mostrarError(mensaje) {
         console.log("Mostrando mensaje de error:", mensaje);
         errorMessage.textContent = mensaje;
