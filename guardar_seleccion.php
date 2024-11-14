@@ -1,13 +1,13 @@
 <?php
-// Incluir el archivo de conexión a la base de datos
+// Incluir el archivo de conexiï¿½n a la base de datos
 include('Conex.inc');
 
-// Iniciar la sesión para obtener el ID del usuario
+// Iniciar la sesiï¿½n para obtener el ID del usuario
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
+// Verificar si el usuario ha iniciado sesiï¿½n
 if (!isset($_SESSION['id_usuario'])) {
-    // Si no hay un usuario en la sesión, redirigir al formulario de login
+    // Si no hay un usuario en la sesiï¿½n, redirigir al formulario de login
     header("Location: login.html");
     exit();
 }
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $disco_id = $_POST['disco'];
     $monitor_id = $_POST['monitor'];
 
-    // Comprobar si el usuario ya tiene una selección
+    // Comprobar si el usuario ya tiene una selecciï¿½n
     $consulta_verificar = "SELECT * FROM seleccion WHERE id_usuario = ?";
     $stmt_verificar = mysqli_prepare($db, $consulta_verificar);
     mysqli_stmt_bind_param($stmt_verificar, "i", $id_usuario);
@@ -31,45 +31,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = mysqli_stmt_get_result($stmt_verificar);
     
     if (mysqli_num_rows($resultado) > 0) {
-        // El usuario ya tiene una selección, hacer un UPDATE
+        // El usuario ya tiene una selecciï¿½n, hacer un UPDATE
         $consulta_update = "UPDATE seleccion SET cpu_id = ?, ram_id = ?, disco_id = ?, monitor_id = ? WHERE id_usuario = ?";
         $stmt_update = mysqli_prepare($db, $consulta_update);
         mysqli_stmt_bind_param($stmt_update, "iiiii", $cpu_id, $ram_id, $disco_id, $monitor_id, $id_usuario);
 
-        // Ejecutar la consulta de actualización
+        // Ejecutar la consulta de actualizaciï¿½n
         if (mysqli_stmt_execute($stmt_update)) {
-            // Redirigir al menú si la actualización fue exitosa
+            // Redirigir al menï¿½ si la actualizaciï¿½n fue exitosa
             header("Location: menu.html");
             exit();
         } else {
-            echo "<h2>Error al actualizar la selección</h2>";
+            echo "<h2>Error al actualizar la seleccion</h2>";
         }
 
-        // Cerrar la declaración de actualización
+        // Cerrar la declaraciï¿½n de actualizaciï¿½n
         mysqli_stmt_close($stmt_update);
     } else {
-        // El usuario no tiene selección, hacer un INSERT
+        // El usuario no tiene selecciï¿½n, hacer un INSERT
         $consulta_insert = "INSERT INTO seleccion (id_usuario, cpu_id, ram_id, disco_id, monitor_id) VALUES (?, ?, ?, ?, ?)";
         $stmt_insert = mysqli_prepare($db, $consulta_insert);
         mysqli_stmt_bind_param($stmt_insert, "iiiii", $id_usuario, $cpu_id, $ram_id, $disco_id, $monitor_id);
 
-        // Ejecutar la consulta de inserción
+        // Ejecutar la consulta de inserciï¿½n
         if (mysqli_stmt_execute($stmt_insert)) {
-            // Redirigir al menú si la inserción fue exitosa
+            // Redirigir al menï¿½ si la inserciï¿½n fue exitosa
             header("Location: menu.html");
             exit();
         } else {
-            echo "<h2>Error al guardar la selección</h2>";
+            echo "<h2>Error al guardar la seleccion</h2>";
         }
 
-        // Cerrar la declaración de inserción
+        // Cerrar la declaraciï¿½n de inserciï¿½n
         mysqli_stmt_close($stmt_insert);
     }
 
-    // Cerrar la declaración de verificación
+    // Cerrar la declaraciï¿½n de verificaciï¿½n
     mysqli_stmt_close($stmt_verificar);
 }
 
-// Cerrar la conexión a la base de datos
+// Cerrar la conexiï¿½n a la base de datos
 mysqli_close($db);
 ?>

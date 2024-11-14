@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Verificar si el usuario fue encontrado
         if ($usuario) {
-            // Comparar la contraseña ingresada en texto plano con la almacenada en la base de datos
-            if ($password === $usuario['password_hash']) { // Asegúrate de que 'password_hash' es correcto
+            // Comparar la contraseña ingresada en texto plano con el hash almacenado en la base de datos
+            if (password_verify($password, $usuario['password_hash'])) {
                 // Si la contraseña es correcta, iniciar la sesión
                 $_SESSION['id_usuario'] = $usuario['id_usuario'];
                 $_SESSION['nombre'] = $usuario['nombre'];
