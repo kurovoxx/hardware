@@ -1,21 +1,13 @@
 <?php
-// Incluir el archivo de conexi�n a la base de datos
 include('Conex.inc');
-
-// Iniciar la sesi�n
 session_start();
 
-// Verificar si el usuario ha iniciado sesi�n
 if (!isset($_SESSION['id_usuario'])) {
-    // Si no hay un usuario en la sesi�n, redirigir al formulario de login
     header("Location: login.html");
     exit();
 }
 
-// Obtener el ID del usuario
 $id_usuario = $_SESSION['id_usuario'];
-
-// Consulta para obtener las piezas seleccionadas por el usuario
 $consulta = "
     SELECT h.nombre, h.tipo, h.marca, h.precio 
     FROM seleccion s
@@ -27,19 +19,15 @@ mysqli_stmt_bind_param($stmt, "i", $id_usuario);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 
-// Inicializar variables para almacenar el total y las filas de la tabla
 $seleccion = [];
 $total_precio = 0;
 
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $seleccion[] = $fila;
-    $total_precio += $fila['precio']; // Sumar el precio al total
+    $total_precio += $fila['precio'];
 }
 
-// Cerrar la declaraci�n
 mysqli_stmt_close($stmt);
-
-// Cerrar la conexi�n
 mysqli_close($db);
 ?>
 
@@ -48,14 +36,12 @@ mysqli_close($db);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Seleccion de Hardware</title>
+    <title>Tu Selección de Hardware</title>
     <link rel="stylesheet" href="./css/seleccion_styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Tu Seleccion de Hardware</h1>
-
-        <!-- Mostrar la tabla con la selecci�n -->
+        <h1>Tu Selección de Hardware</h1>
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr>
@@ -76,20 +62,11 @@ mysqli_close($db);
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr>
-                        <td colspan="4">No se encontraron piezas seleccionadas.</td>
-                    </tr>
+                    <tr><td colspan="4">No tienes ninguna selección.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
-
-        <!-- Mostrar el precio total -->
-        <h2>Precio Total: $<?php echo number_format($total_precio, 2); ?></h2>
-
-        <!-- Bot�n para regresar al men� -->
-        <div class="back-to-menu">
-            <button onclick="window.location.href='menu.html'">Volver al Menu</button>
-        </div>
+        <h2>Total: $<?php echo number_format($total_precio, 2); ?></h2>
     </div>
 </body>
 </html>

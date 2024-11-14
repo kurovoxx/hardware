@@ -4,102 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Principal</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <!-- Estilos personalizados -->
+    
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/menu_styles.css">
-    <!-- React y ReactDOM desde CDN -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Babel para compilar JSX en el navegador -->
-    <script src="https://unpkg.com/@babel/standalone"></script>
 </head>
-<body>
-    <!-- Header en una sola columna -->
-    <header class="text-center p-3 bg-primary text-white">
+<body class="bg-light">
+
+    <!-- Encabezado -->
+    <header class="text-center py-4 bg-primary text-white">
         <h1>Seleccione su nivel de familiaridad</h1>
-        <h1>con el <b>Hardware</b></h1>
+        <h2>con el <b>Hardware</b></h2>
     </header>
 
-    <main class="container my-5">
-        <!-- Mensaje de éxito o error -->
-        <div id="mensaje" class="mensaje mb-3 text-center"></div>
-
-        <!-- Fila para el formulario de selección -->
-        <div class="row mb-5">
-            <div class="col-12 col-md-6 offset-md-3">
-                <form>
-                    <label for="combobox" class="form-label">Elige una opción:</label>
-                    <select id="combobox" name="nivel" class="form-select mb-3">
-                        <option value="a">¿Qué es el Hardware?</option>
-                        <option value="b">Conozco el concepto</option>
-                        <option value="c">Estoy familiarizado con el concepto</option>
-                        <option value="d">Estoy bastante informado al respecto</option>
-                    </select>
-                    <button id="enviar" class="btn btn-primary w-100">Vamos!</button>
-                </form>
-            </div>
+    <main class="container mt-5" id="app">
+        <!-- Botón con Vue.js para mostrar información general -->
+        <div class="text-center mb-4">
+            <button @click="mostrarInformacion = !mostrarInformacion" class="btn btn-info">Mostrar Información General</button>
         </div>
 
-        <!-- Fila para los botones de redirección -->
-        <div class="row text-center">
-            <!-- Seleccionar Hardware -->
-            <div class="col-12 col-md-4 mb-4">
-                <div class="p-4 bg-light shadow-sm rounded">
-                    <h2>¿Listo para seleccionar el hardware?</h2>
-                    <button onclick="window.location.href='hardware.php'" class="btn btn-success mt-3 w-100">Seleccionar Hardware</button>
-                </div>
-            </div>
-            <!-- Ver Selección de Hardware -->
-            <div class="col-12 col-md-4 mb-4">
-                <div class="p-4 bg-light shadow-sm rounded">
-                    <h2>¿Ver tu selección de hardware?</h2>
-                    <button onclick="window.location.href='seleccion.php'" class="btn btn-info mt-3 w-100">Ver Selección</button>
-                </div>
-            </div>
-            <!-- Volver al Inicio -->
-            <div class="col-12 col-md-4 mb-4">
-                <div class="p-4 bg-light shadow-sm rounded">
-                    <h2>¿Volver a la página principal?</h2>
-                    <button onclick="window.location.href='index.html'" class="btn btn-secondary mt-3 w-100">Volver al Inicio</button>
-                </div>
-            </div>
+        <!-- Información general que se muestra al hacer clic en el botón -->
+        <div v-if="mostrarInformacion" class="alert alert-info text-center">
+            <p>Esta página está diseñada para ayudarte a explorar diferentes niveles de conocimiento sobre hardware. Puedes seleccionar tu nivel de familiaridad y acceder a información relevante.</p>
         </div>
-
-        <!-- Botón para mostrar el modal de SweetAlert2 -->
-        <div class="text-center mt-5">
-            <button id="modalButton" class="btn btn-warning">Información adicional</button>
-        </div>
-
-        <!-- Aquí renderizamos nuestro componente de React -->
-        <div id="react-root"></div>
     </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <!-- Enlace a los scripts externos -->
-    <script src="mostrar_mensaje.js"></script>
+    <!-- Contenido fuera del alcance de Vue -->
+    <main class="container mt-5">
+        <!-- Mensaje de estado -->
+        <div id="mensaje" class="mensaje mb-4 text-center"></div>
+        
+        <!-- Formulario de selección de nivel de familiaridad -->
+        <form class="text-center mb-4">
+            <div class="form-group">
+                <label for="combobox">Elige una opción:</label>
+                <select id="combobox" name="nivel" class="form-control w-50 mx-auto">
+                    <option value="a">¿Qué es el Hardware?</option>
+                    <option value="b">Conozco el concepto</option>
+                    <option value="c">Estoy familiarizado con el concepto</option>
+                    <option value="d">Estoy bastante informado al respecto</option>
+                </select>
+            </div>
+            <button type="submit" id="enviar" class="btn btn-success">Vamos!</button>
+        </form>
+
+        <!-- Sección de selección de hardware -->
+        <div class="hardware-section text-center mb-4">
+            <h2>¿Listo para seleccionar el hardware?</h2>
+            <button onclick="window.location.href='hardware.php'" class="btn btn-primary">Seleccionar Hardware</button>
+        </div>
+
+        <!-- Sección para ver la selección de hardware -->
+        <div class="hardware-selection text-center mb-4">
+            <h2>¿Ver tu selección de hardware?</h2>
+            <button onclick="window.location.href='seleccion.php'" class="btn btn-info">Ver Selección</button>
+        </div>
+
+        <!-- Sección para volver a la página principal -->
+        <div class="login-section text-center">
+            <h2>¿Volver a la página principal?</h2>
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary">Volver al Inicio</button>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="niveles_js.js"></script>
-    <script src="modal_info.js"></script> <!-- Enlace al nuevo script -->
+    <script src="parametros_url.js"></script>
+    <script src="advertencia.js"></script>
+    <script src="app.js"></script> <!-- Enlace al archivo app.js -->
 
-    <!-- Script para React -->
-    <script type="text/babel">
-        // Componente React
-        function Informacion() {
-            return (
-                <div className="alert alert-info text-center mt-4">
-                    <h4>¡Bienvenido a la sección de Hardware!</h4>
-                    <p>Encuentra toda la información sobre hardware en nuestro sitio web.</p>
-                </div>
-            );
-        }
-
-        // Renderizamos el componente React en el div con id 'react-root'
-        ReactDOM.render(<Informacion />, document.getElementById('react-root'));
-    </script>
+    <!-- Bootstrap y dependencias de JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

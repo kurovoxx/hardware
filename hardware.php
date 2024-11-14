@@ -1,10 +1,10 @@
 <?php
-// Incluir el archivo que contiene la conexi�n a la base de datos
+// Incluir el archivo que contiene la conexión a la base de datos
 include('Conex.inc');
 
-// Verificar la conexi�n a la base de datos
+// Verificar la conexión a la base de datos
 if (!$db) {
-    die("Error en la conexion a la base de datos: " . mysqli_connect_error());
+    die("Error en la conexión a la base de datos: " . mysqli_connect_error());
 }
 ?>
 
@@ -20,7 +20,7 @@ if (!$db) {
     <div class="container">
         <h1>Selecciona tu Hardware</h1>
         <form action="guardar_seleccion.php" method="POST">
-            <!-- Selecci�n de CPU -->
+            <!-- Selección de CPU -->
             <div class="hardware-section">
                 <label for="cpu">CPU:</label>
                 <select name="cpu" id="cpu" required>
@@ -40,7 +40,7 @@ if (!$db) {
                 </select>
             </div>
 
-            <!-- Selecci�n de RAM -->
+            <!-- Selección de RAM -->
             <div class="hardware-section">
                 <label for="ram">RAM:</label>
                 <select name="ram" id="ram" required>
@@ -60,7 +60,7 @@ if (!$db) {
                 </select>
             </div>
 
-            <!-- Selecci�n de Disco Duro -->
+            <!-- Selección de Disco Duro -->
             <div class="hardware-section">
                 <label for="disco">Disco:</label>
                 <select name="disco" id="disco" required>
@@ -80,7 +80,7 @@ if (!$db) {
                 </select>
             </div>
 
-            <!-- Selecci�n de Monitor -->
+            <!-- Selección de Monitor -->
             <div class="hardware-section">
                 <label for="monitor">Monitor:</label>
                 <select name="monitor" id="monitor" required>
@@ -100,29 +100,29 @@ if (!$db) {
                 </select>
             </div>
 
-            <!-- Previsualizaci�n del precio total -->
+            <!-- Previsualización del precio total -->
             <div id="precio-total">
                 <h2>Precio Total: $<span id="total">0.00</span></h2>
             </div>
 
-            <!-- Bot�n de enviar -->
+            <!-- Botón de enviar -->
             <div class="submit-section">
-                <button type="submit">Guardar Seleccion</button>
+                <button type="submit">Guardar Selección</button>
             </div>
         </form>
 
-        <!-- Bot�n para regresar al men� -->
+        <!-- Botón para regresar al menú -->
         <div class="back-to-menu">
-            <button onclick="window.location.href='menu.html'">Regresar al Menu</button>
+            <button onclick="window.location.href='menu.html'">Regresar al Menú</button>
         </div>
     </div>
 
-    <!-- Conexi�n al archivo JavaScript -->
+    <!-- Conexión al archivo JavaScript -->
     <script src="hardware_js.js"></script>
 </body>
 </html>
 
 <?php
-// Cerrar la conexi�n
+// Cerrar la conexión
 mysqli_close($db);
 ?>

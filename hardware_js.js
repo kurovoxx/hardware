@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM completamente cargado y procesado.");
 
-    // Funci�n para actualizar el precio total basado en la selecci�n del hardware
+    // Función para actualizar el precio total basado en la selección del hardware
     function actualizarPrecioTotal() {
-        console.log("Funcion actualizarPrecioTotal llamada.");
+        console.log("Función actualizarPrecioTotal llamada.");
 
         let total = 0;
 
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('total').textContent = total.toFixed(2);
     }
 
-    // Funci�n para obtener el precio de una pieza de hardware (usando this)
+    // Función para obtener el precio de una pieza de hardware (usando this)
     function obtenerPrecio(selectElement) {
-        console.log("Funcion obtenerPrecio llamada para el elemento:", selectElement.id);
+        console.log("Función obtenerPrecio llamada para el elemento:", selectElement.id);
 
         const precio = selectElement.options[selectElement.selectedIndex].getAttribute('data-precio');
         console.log("Precio obtenido:", precio);
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return precio ? parseFloat(precio) : 0;
     }
 
-    // Funci�n para mostrar detalles de la pieza seleccionada usando fetch
+    // Función para mostrar detalles de la pieza seleccionada usando fetch
     function mostrarDetallesHardware(id, tipo, elementoDestino) {
-        console.log(`Funcion mostrarDetallesHardware llamada para ${tipo} con ID: ${id}`);
+        console.log(`Función mostrarDetallesHardware llamada para ${tipo} con ID: ${id}`);
 
         // Usamos fetch para traer los detalles desde el servidor
         fetch(`getHardwareDetails.php?id=${id}&tipo=${tipo}`)
@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Funci�n para manejar el cambio de selecci�n en un combobox
+    // Función para manejar el cambio de selección en un combobox
     function manejarCambioSeleccion(selectElement, tipo) {
-        console.log(`Funcion manejarCambioSeleccion llamada para ${tipo}`);
+        console.log(`Función manejarCambioSeleccion llamada para ${tipo}`);
 
         const idSeleccionado = selectElement.value;
         const contenedorDetalles = document.getElementById('detalles-hardware');
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mostrar los detalles del hardware seleccionado
             mostrarDetallesHardware(idSeleccionado, tipo, contenedorDetalles);
         } else {
-            console.log(`No se selecciono ninguna ${tipo}.`);
-            contenedorDetalles.innerHTML = '';  // Limpiar detalles si no hay selecci�n
+            console.log(`No se seleccionó ninguna ${tipo}.`);
+            contenedorDetalles.innerHTML = '';  // Limpiar detalles si no hay selección
         }
 
         // Actualizar el precio total
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         manejarCambioSeleccion(this, 'MONITOR');
     });
 
-    // Inicializar el precio total al cargar la p�gina
+    // Inicializar el precio total al cargar la página
     console.log("Inicializando el precio total...");
     actualizarPrecioTotal();
 });
